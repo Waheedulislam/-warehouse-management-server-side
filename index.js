@@ -17,7 +17,14 @@ async function run() {
     console.log('mongo is running');
     try {
         await client.connect();
+        const productCollection = client.db("wareHouse").collection("products");
 
+        app.get('/product', async (req, res) => {
+            const query = {};
+            const cursor = productCollection.find(query);
+            const product = await cursor.toArray();
+            res.send(product)
+        })
 
     } finally {
         //   await client.close();
