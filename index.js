@@ -32,6 +32,14 @@ async function run() {
             res.send(item);
         })
 
+        // POST
+        app.post('/item', async (req, res) => {
+            const newItem = req.body;
+            const result = await itemCollection.insertOne(newItem);
+            res.send(result);
+        })
+
+
     } finally {
         //   await client.close();
     }
