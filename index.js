@@ -3,8 +3,9 @@ const cors = require('cors');
 require('dotenv').config();
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const res = require('express/lib/response');
-const port = process.env.PORT || 5000;
 const app = express();
+
+const port = process.env.PORT || 5000;
 
 //meddleWare
 app.use(express.json())
