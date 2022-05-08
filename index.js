@@ -41,21 +41,22 @@ async function run() {
         })
 
         // post 
-        app.put('/addQuantity', async (req, res) => {
+        app.put('/addQuantity/:id', async (req, res) => {
             const id = req.params.id;
             const oldQuantity = parseInt(req.query.oldQuantity);
             const newQuantity = parseInt(req.body.quantity);
 
             const totalQuantity = oldQuantity + newQuantity;
+            console.log(totalQuantity);
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updatedDoc = {
                 $set: {
-                    quantity: totalQuantity.quantity
+                    quantity: totalQuantity
                 }
             };
             const result = await itemCollection.updateOne(filter, updatedDoc, options)
-            res.send(result)
+            res.send({ massage: 'Add a Quantity' })
         })
 
         // put update  user
